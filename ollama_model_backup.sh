@@ -67,7 +67,7 @@ for blob_name in ${blob_list[@]}; do
         continue
     fi
 
-    cp "$blob_file" "$blob_backup"
+    nice cp "$blob_file" "$blob_backup"
 
 done
 
