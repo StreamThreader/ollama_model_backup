@@ -47,7 +47,7 @@ fi
 ########## Backup manifest file
 mkdir -p "$BACKUP_DIR/$MODEL_MANIFEST_DIR"
 
-cp "$MODEL_MANIFEST" "$BACKUP_DIR/$MODEL_MANIFEST_DIR"
+nice cp "$MODEL_MANIFEST" "$BACKUP_DIR/$MODEL_MANIFEST_DIR"
 
 
 ########## Backup Blob files
