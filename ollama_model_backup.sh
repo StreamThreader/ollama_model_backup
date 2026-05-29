@@ -51,7 +51,7 @@ nice cp "$MODEL_MANIFEST" "$BACKUP_DIR/$MODEL_MANIFEST_DIR"
 
 
 ########## Backup blob files
-# read manifest filem and parsing blob files path
+# read manifest file and parsing blob files path
 blob_list="$(cat $MODEL_MANIFEST |\
     grep -Po '"digest":.*?[^\\]",' |\
     awk -F "\"" '{print $4}' | sed -e "s\:\-\g")"
