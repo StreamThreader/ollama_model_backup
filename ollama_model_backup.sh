@@ -18,7 +18,7 @@ MODEL_STAGE="library"
 DATE_TIME=$(date +"%Y-%m-%d")
 OLLAMA_VOL="/var/lib/docker/volumes/docker_ollama/_data"
 BACKUP_NAME="$MODEL_NAME""_""$MODEL_TAG"
-BACKUP_DIR="$OLLAMA_VOL/backup/$BACKUP_NAME"
+BACKUP_DIR="/data/backup/$BACKUP_NAME"
 MODEL_MANIFEST_DIR="models/manifests/$MODEL_REPOSITORY/`
                                     `$MODEL_STAGE/$MODEL_NAME"
 MODEL_MANIFEST="$OLLAMA_VOL/$MODEL_MANIFEST_DIR/$MODEL_TAG"
