@@ -30,7 +30,6 @@ if [ ! -d "$OLLAMA_VOL" ]; then
     echo "Ollama volume dir not found"
     exit 1
 fi
-
 if [ ! -f "$MODEL_MANIFEST" ]; then
     echo "Model manifest file not found"
     exit 1
@@ -47,28 +46,30 @@ fi
 ########## Backup manifest file
 mkdir -p "$BACKUP_DIR/$MODEL_MANIFEST_DIR"
 
+# copy manifest file
 nice cp "$MODEL_MANIFEST" "$BACKUP_DIR/$MODEL_MANIFEST_DIR"
 
 
-########## Backup Blob files
-# read manifest file
+########## Backup blob files
+# read manifest filem and parsing blob files path
 blob_list="$(cat $MODEL_MANIFEST |\
     grep -Po '"digest":.*?[^\\]",' |\
     awk -F "\"" '{print $4}' | sed -e "s\:\-\g")"
 
 mkdir -p "$BACKUP_DIR/$MODEL_BLOB_DIR"
 
+# copy each blob file
 for blob_name in ${blob_list[@]}; do
     blob_file="$MODEL_BLOB/$blob_name"
     blob_backup="$BACKUP_DIR/$MODEL_BLOB_DIR/$blob_name"
 
+    # skip if not exist
     if [ ! -f $blob_file ]; then
         echo "Blob file not found: $blolb_file"
         continue
     fi
 
     nice cp "$blob_file" "$blob_backup"
-
 done
 
 
